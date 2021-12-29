@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('America/Sao_Paulo'); //definindo o local da data e hora
 
     require_once("ViaCep.php");
     //todo essas funções comentadas funcionam,  mas eu decidi fazer de outra forma para 
@@ -37,6 +38,12 @@ session_start();
         //             <li>$value</li>
         //         </ul>";
         // }
+        $filename = fopen("log.txt", "a+");
+            $cep = "O CEP pesquisado é: $x";
+            fwrite($filename, $cep ." na data: ".date("d/m/Y H:i:s") ."\r\n");
+            fclose($filename);
+            // echo "Arquivo criado";
+            // var_dump($x);
     }else{
         $_SESSION['erro'] = "";
         //echo "Campo vazio <br> <br>";
